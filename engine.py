@@ -28,5 +28,5 @@ class Engine:
         self.game_map.render(console)
         for e in self.entities:
             console.print(e.x, e.y, e.char, fg=e.color)
-        context.present(console)
+        context.present(console, integer_scaling=True)
         console.clear()
