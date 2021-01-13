@@ -30,6 +30,7 @@ class MoveAction(Action):
     def perform(self, engine: Engine, entity: Entity):
         dest_x = entity.x + self.dx
         dest_y = entity.y + self.dy
-        if engine.game_map.tiles["walkable"][dest_x, dest_y]:
+        in_bounds = engine.game_map.in_bounds(dest_x, dest_y)
+        if in_bounds and engine.game_map.tiles["walkable"][dest_x, dest_y]:
             entity.move(self.dx, self.dy)
 
