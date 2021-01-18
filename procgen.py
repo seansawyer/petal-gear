@@ -38,21 +38,13 @@ class RectangularRoom:
 
 
 def generate_dungeon(
-        max_rooms: int,
-        room_min_size: int,
-        room_max_size: int,
-        map_width: int,
-        map_height: int,
+    max_rooms: int,
+    room_min_size: int,
+    room_max_size: int,
+    map_width: int,
+    map_height: int,
 ) -> GameMap:
     """Generate a dungeon by carving floors out of a map full of walls"""
-    # dungeon = GameMap(map_width, map_height)
-    # room_1 = RectangularRoom(x=10, y=8, width=5, height=8)
-    # room_2 = RectangularRoom(x=18, y=6, width=6, height=8)
-    # dungeon.tiles[room_1.inner] = tile_types.floor
-    # dungeon.tiles[room_2.inner] = tile_types.floor
-    # for x, y in tunnel_between(room_2.center, room_1.center):
-    #     dungeon.tiles[x, y] = tile_types.floor
-    # return dungeon
     dungeon = GameMap(map_width, map_height)
     rooms: List[RectangularRoom] = []
     while len(rooms) < max_rooms:
@@ -73,10 +65,6 @@ def generate_dungeon(
                 dungeon.tiles[x, y] = tile_types.floor
         rooms.append(room)
     return dungeon
-
-
-
-
 
 
 def tunnel_between(
