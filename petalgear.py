@@ -14,10 +14,9 @@ from input_handlers import EventHandler
 
 def main():
     sdl2.SDL_Init(sdl2.SDL_INIT_VIDEO | sdl2.SDL_INIT_GAMECONTROLLER)
-    # a 32px tileset with only the "@" filled in currently
-    tileset_path = "tileset.png"
+    tileset_path = "tileset_cp437.png"
     tileset = tcod.tileset.load_tilesheet(
-        tileset_path, 32, 8, tcod.tileset.CHARMAP_TCOD
+        tileset_path, 16, 16, tcod.tileset.CHARMAP_CP437
     )
     screen_width = 32
     screen_height = 24
@@ -34,21 +33,29 @@ def main():
     walkable_positions = np.where(game_map.tiles["walkable"])
     player_x = walkable_positions[0][0]
     player_y = walkable_positions[1][0]
-    npc_x = walkable_positions[0][1]
-    npc_y = walkable_positions[1][1]
+    npc1_x = walkable_positions[0][1]
+    npc1_y = walkable_positions[1][1]
+    npc2_x = walkable_positions[0][2]
+    npc2_y = walkable_positions[1][2]
     player = Entity(
         player_x,
         player_y,
         "@",
         (255, 255, 255),
     )
-    npc = Entity(
-        npc_x,
-        npc_y,
-        "@",
+    npc1 = Entity(
+        npc1_x,
+        npc1_y,
+        "o",
         (255, 255, 0),
     )
-    entities = {npc, player}
+    npc2 = Entity(
+        npc2_x,
+        npc2_y,
+        "T",
+        (255, 255, 0),
+    )
+    entities = {npc1, npc2, player}
     engine = Engine(entities, player, game_map)
     sdl_window_flags = tcod.context.SDL_WINDOW_MAXIMIZED
     with tcod.context.new(
